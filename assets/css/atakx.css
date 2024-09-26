@@ -1,0 +1,475 @@
+.atakx-container {
+  font-family: "Poppins", sans-serif;
+  width: 82.5rem;
+  padding-right: 1rem;
+}
+
+.atakx-sub-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 2rem 0;
+  gap: 1.5rem;
+}
+
+.atakx-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+  border-bottom: solid 1px #e1e1e1;
+}
+
+.atakx-banner {
+  background-image: url("../img/image1.jpeg");
+  width: 100%;
+  height: 27.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.atakx-banner-content {
+  width: 45%;
+  padding-left: 3rem;
+  color: white;
+  line-height: 2rem;
+}
+
+.atakx-banner-text {
+  font-size: xx-large;
+  font-weight: 500;
+}
+
+.atakx-section-head {
+  padding: 0 2rem;
+  padding-top: 1.5rem;
+}
+
+.atakx-separator {
+  border: solid 1px rgb(156, 156, 156);
+}
+
+.atakx-banner-btn {
+  border-radius: 30px;
+  border: none;
+  background-color: white;
+  padding: 1rem 2rem;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.column-left {
+  width: 70%;
+}
+
+.column-right {
+  width: 30%;
+}
+
+.atakx-form {
+  width: 100%;
+  padding: 0 2rem;
+  margin-top: 1.5rem;
+}
+
+.atakx-label {
+  font-size: 1rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.atakx-input[type="text"],
+.atakx-input[type="email"],
+.atakx-textarea {
+  width: calc(100% - 4rem);
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+.atakx-input[type="text"]:focus,
+.atakx-input[type="email"]:focus,
+.atakx-textarea:focus,
+.atakx-input[type="checkbox"]:focus {
+  border: solid 2px #fc6736;
+  outline: none;
+  box-shadow: none;
+}
+
+.atakx-input[type="checkbox"] {
+  accent-color: #0c2d57;
+}
+
+.atakx-input[type="checkbox"]:checked {
+  border: solid 2px #fc6736;
+}
+
+.atakx-button {
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  background-color: #fc6736;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.atakx-button-sec {
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  background-color: #e2e2e2;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.atakx-button:hover {
+  background-color: #fc7346;
+  transition: all 0.3s;
+}
+
+.atakx-button-sec:hover {
+  background-color: #d8d8d8;
+  transition: all 0.3s;
+}
+
+.row,
+.row-btn {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.row-btn {
+  width: calc(100% - 4rem);
+  display: flex;
+  justify-content: end;
+}
+
+.sec {
+  width: calc(100% - 4rem);
+}
+
+.atakx-footer {
+  background-color: #191919;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 13rem;
+  margin-top: 1.5rem;
+}
+
+.atakx-banner-right {
+  background-image: url("../img/image2.jpeg");
+  width: 100%;
+  height: 36.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.atakx-banner-right-content {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.atakx-value-us {
+  background-color: #f5f5f5;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.atakx-value-us-content {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding-top: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 3rem;
+  height: 100%;
+  align-items: start;
+  justify-content: center;
+  color: #5d5d5d;
+}
+
+.value-us-link {
+  text-decoration: none;
+  font-size: larger;
+  font-weight: 600;
+  cursor: pointer;
+  color: #5d5d5d;
+}
+
+.value-us-link:hover {
+  font-weight: 700;
+  color: #5d5d5d;
+}
+
+.star {
+  position: relative;
+  right: 0.5rem;
+  float: right;
+  top: 0.5rem;
+}
+
+.atakx-forms-config {
+  background-color: #f5f5f5;
+  margin-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.atakx-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.atakx-input[type="file"] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.atakx-label-file {
+  font-size: 0.8rem;
+  font-weight: 400;
+  background-color: white;
+  border-color: #000;
+  color: black;
+  border: solid 2px #fc6736;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.atakx-label-file:focus,
+.atakx-label-file.has-focus {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.atakx-select {
+  position: relative;
+  width: 5rem;
+}
+
+.atakx-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 5rem;
+  font-size: 0.8rem;
+  padding: 5px 10px 5px 10px;
+  background-color: #ffffff;
+  border: 2px solid #fc6736;
+  border-radius: 3px;
+  color: #000000;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0px 0px 0px 0px #e2e2e2;
+}
+
+.atakx-select select:focus {
+  background: #ffffff;
+  border: 2px solid #fc6736;
+  border-radius: 3px;
+}
+
+/* Estilo para ocultar el modal por defecto */
+.atakx-preview {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  border: 1px solid #888;
+  width: max-content;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo del botón de cierre */
+.close {
+  color: #aaa;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilos de la preview de CTA */
+
+.cta-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  width: 900px;
+  height: 380px;
+  background-color: #f2f3f5;
+}
+
+.cta-left {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-right {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cta-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.cta-logo {
+  z-index: 9;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin-right: 10px;
+  margin-left: 10px;
+  gap: 10px;
+}
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.input-label label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.cta-button {
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cta-title {
+  margin-left: 10px;
+  margin-right: 10px;
+  line-height: 2.5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.cta-input[type="text"],
+.cta-input[type="email"] {
+  background-color: #e8e9eb;
+  padding: 5px;
+  border: none;
+  font-size: 14px;
+  color: #333;
+  width: 100%;
+}
+
+.cta-button:hover {
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s;
+}
+
+.cta-input[type="text"]:focus,
+.cta-input[type="email"]:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.cta-message {
+  width: 900px;
+  height: 380px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.cta-message span {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
