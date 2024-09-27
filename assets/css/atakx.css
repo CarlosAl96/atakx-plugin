@@ -23,7 +23,7 @@
 }
 
 .atakx-banner {
-  background-image: url("../img/image1.jpeg");
+  background-image: url("../img/image1.jpg");
   width: 100%;
   height: 27.5rem;
   background-repeat: no-repeat;
@@ -52,7 +52,32 @@
 }
 
 .atakx-separator {
-  border: solid 1px rgb(156, 156, 156);
+  border: solid 1px #e0e4e9;
+  height: 0px;
+  width: 100%;
+}
+
+.atakx-separator-wi {
+  border: solid 2px #fc6736;
+  height: 0px;
+  width: 45px;
+}
+
+.atakx-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  background-color: #fcdad0;
+}
+
+.atakx-separator-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 
 .atakx-banner-btn {
@@ -78,6 +103,7 @@
   width: 100%;
   padding: 0 2rem;
   margin-top: 1.5rem;
+  color: #575757;
 }
 
 .atakx-label {
@@ -192,16 +218,18 @@
   color: white;
 }
 
-.atakx-value-us {
-  background-color: #f5f5f5;
+.atakx-right-banner {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 1.5rem;
 }
 
-.atakx-value-us-content {
+.atakx-right-banner-content {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 85%;
   padding-top: 0;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -212,7 +240,7 @@
   color: #5d5d5d;
 }
 
-.value-us-link {
+.atakx-right-banner-link {
   text-decoration: none;
   font-size: larger;
   font-weight: 600;
@@ -220,7 +248,7 @@
   color: #5d5d5d;
 }
 
-.value-us-link:hover {
+.atakx-right-banner-link:hover {
   font-weight: 700;
   color: #5d5d5d;
 }
@@ -233,7 +261,7 @@
 }
 
 .atakx-forms-config {
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
   margin-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
@@ -242,7 +270,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
+  gap: 0.5rem;
   width: 100%;
 }
 
@@ -472,4 +501,39 @@
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 2rem;
+}
+
+.star-shadow {
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.149));
+}
+
+.atack-icon-container {
+  width: calc(100% - 2rem);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  padding: 1rem;
+}
+
+.atakx-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 2rem);
+}
+
+.atakx-congrats-container {
+  width: calc(100% - 2rem);
+  background-color: #ebfaf5;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.atakx-firts-steps-container {
+  width: calc(100% - 2rem);
+  background-color: #f3f3f3;
+  border: solid 0.5px #e0e4e9;
+  border-radius: 8px;
+  padding: 1rem;
 }

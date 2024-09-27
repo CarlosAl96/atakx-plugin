@@ -22,11 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['articlesPerWeek'])) {
           $message = "Correctly edited data";
      }
 
-     if (!wp_next_scheduled('atakx_initial_cron')) {
-          $tiempo_inicial = strtotime("+5 minutes");
-          wp_schedule_single_event($tiempo_inicial, 'atakx_initial_cron');
-     }
-
      $response = array('success' => true, 'message' => $message);
      echo json_encode($response);
      exit;

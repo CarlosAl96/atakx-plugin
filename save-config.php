@@ -55,11 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apiKey'])) {
           $message = "Data saved successfully";
      }
 
-     // if (!wp_next_scheduled('atakx_initial_cron')) {
+     if (!wp_next_scheduled('atakx_initial_cron')) {
 
-     //      $tiempo_inicial = strtotime("+5 minutes");
-     //      wp_schedule_single_event($tiempo_inicial, 'atakx_initial_cron');
-     // }
+          $tiempo_inicial = strtotime("+1 minutes");
+          wp_schedule_single_event($tiempo_inicial, 'atakx_initial_cron');
+     }
 
      $response = array('success' => true, 'message' => $message);
      echo json_encode($response);

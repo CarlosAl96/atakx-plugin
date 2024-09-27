@@ -19,39 +19,48 @@ function atakx_activate_plugin()
      $table_name_config = $wpdb->prefix . 'atakx_config';
      $table_name_CTA = $wpdb->prefix . 'atakx_config_cta';
 
+     $config = $wpdb->get_row("SELECT * FROM $table_name_config LIMIT 1", ARRAY_A);
 
-     $sql = "CREATE TABLE IF NOT EXISTS {$table_name_config} (
-          id INT NOT NULL AUTO_INCREMENT,
-          api_key VARCHAR(255) NOT NULL,
-          name_business VARCHAR(255) NOT NULL,
-          description_business TEXT NOT NULL,
-          key_words VARCHAR(255) NOT NULL,
-          articles_per_week INTEGER DEFAULT 2,
-          max_articles_per_month INTEGER DEFAULT 0,
-          is_image_general TINYINT(1) DEFAULT 0,
-          is_enable_cta TINYINT(1) DEFAULT 0,
-          is_with_content_table TINYINT(1) DEFAULT 0,
-          PRIMARY KEY (id)
-     )";
+     if ($config) {
+          if (!wp_next_scheduled('atakx_initial_cron')) {
 
-     $sql2 = "CREATE TABLE IF NOT EXISTS {$table_name_CTA} (
-          id INT NOT NULL AUTO_INCREMENT,
-          background_image VARCHAR(255) NOT NULL,
-          overlay_color VARCHAR(100) NOT NULL,
-          overlay_opacity FLOAT NOT NULL,
-          title VARCHAR(255) NOT NULL,
-          button_title VARCHAR(255) NOT NULL,
-          button_color VARCHAR(100) NOT NULL,
-          font VARCHAR(100) NOT NULL,
-          lead_email VARCHAR(100) NOT NULL,
-          logo VARCHAR(255) NOT NULL,
-          with_rounded_border TINYINT(1) DEFAULT 0,
-          cta_html LONGTEXT NOT NULL,
-          PRIMARY KEY (id)
-     )";
+               $tiempo_inicial = strtotime("+1 minutes");
+               wp_schedule_single_event($tiempo_inicial, 'atakx_initial_cron');
+          }
+     } else {
+          $sql = "CREATE TABLE IF NOT EXISTS {$table_name_config} (
+               id INT NOT NULL AUTO_INCREMENT,
+               api_key VARCHAR(255) NOT NULL,
+               name_business VARCHAR(255) NOT NULL,
+               description_business TEXT NOT NULL,
+               key_words VARCHAR(255) NOT NULL,
+               articles_per_week INTEGER DEFAULT 2,
+               max_articles_per_month INTEGER DEFAULT 0,
+               is_image_general TINYINT(1) DEFAULT 0,
+               is_enable_cta TINYINT(1) DEFAULT 0,
+               is_with_content_table TINYINT(1) DEFAULT 0,
+               PRIMARY KEY (id)
+          )";
 
-     $wpdb->query($sql);
-     $wpdb->query($sql2);
+          $sql2 = "CREATE TABLE IF NOT EXISTS {$table_name_CTA} (
+               id INT NOT NULL AUTO_INCREMENT,
+               background_image VARCHAR(255) NOT NULL,
+               overlay_color VARCHAR(100) NOT NULL,
+               overlay_opacity FLOAT NOT NULL,
+               title VARCHAR(255) NOT NULL,
+               button_title VARCHAR(255) NOT NULL,
+               button_color VARCHAR(100) NOT NULL,
+               font VARCHAR(100) NOT NULL,
+               lead_email VARCHAR(100) NOT NULL,
+               logo VARCHAR(255) NOT NULL,
+               with_rounded_border TINYINT(1) DEFAULT 0,
+               cta_html LONGTEXT NOT NULL,
+               PRIMARY KEY (id)
+          )";
+
+          $wpdb->query($sql);
+          $wpdb->query($sql2);
+     }
 }
 
 function atakx_desactivate_plugin()

@@ -130,12 +130,46 @@ if ($config_cta) {
                     </div>
 
                     <div class="atakx-forms-config">
+
+                         <div class="atakx-center" style="padding: 1rem;">
+                              <div class="atakx-congrats-container">
+                                   <div class="atakx-flex" style="justify-content: space-between;">
+                                        <span>¡Felicidades!</span>
+                                        <span>&times;</span>
+                                   </div>
+                                   <p>Atakx ya está activado y está trabajando para tu sitio. Tu web empezará a posicionar mejor gracias a la estrategia de contenidos.</p>
+                                   <p>Para garantizar resultados en el posicionamiento de tu página web, te recomendamos hacer seguimiento a palabras claves con poca dificultad y buen volumen de busquedas mensuales.</p>
+                              </div>
+                         </div>
+
+                         <div class="atakx-section-head">
+                              <h1 style="font-size: 1.5rem; color: #fc6736;">Primeros pasos</h1>
+                              <div class="atakx-separator"></div>
+                         </div>
+
+                         <div class="atakx-center" style="padding: 1rem;">
+                              <div class="atakx-firts-steps-container">
+                                   <p>¿Cómo obtener tu API Key?</p>
+                                   <p>¿Cómo seleccionar tus palabras claves?</p>
+                                   <p>¿Qué es el CTA de Atakx?</p>
+                                   <p>¿Con que frecuencia recomendamos publicar entradas?</p>
+                              </div>
+                         </div>
+
                          <div class="atakx-section-head">
                               <div class="atakx-flex">
-                                   <h1 style="font-size: 1.5rem;">Configuración</h1>
-                                   <button class="atakx-button">Guardar</button>
+                                   <div class="atakx-icon-container">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="30px" height="30px" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fc6736" class="size-6">
+                                             <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        </svg>
+                                   </div>
+                                   <h1 style="font-size: 1.5rem; color: #575757;">Configuración</h1>
                               </div>
-                              <div class="atakx-separator" style="margin-top: 0.5rem;"></div>
+                              <div class="atakx-separator-container">
+                                   <div class="atakx-separator-wi"></div>
+                                   <div class="atakx-separator"></div>
+                              </div>
                          </div>
 
                          <form class="atakx-form" action="" id="form-config" method="post">
@@ -144,7 +178,7 @@ if ($config_cta) {
                                    <label class="atakx-label" for="apiKey">API Key:</label>
                                    <input class="atakx-input" type="text" id="apiKey" name="apiKey" value="<?php echo $api_key; ?>" required>
                                    <p id="apiInvalid" style="display: none; color: #d60000;">Esta Api Key no es válida</p>
-                                   <button class="atakx-button-sec" onclick="goto('https://app.atakx.com')" style="margin-right: 1rem; margin-top: 0.5rem;">Generar API Key</button>
+                                   <!-- <button class="atakx-button-sec" onclick="goto('https://app.atakx.com')" style="margin-right: 1rem; margin-top: 0.5rem;">Generar API Key</button> -->
                               </div>
 
                               <div class="row">
@@ -185,8 +219,18 @@ if ($config_cta) {
                          <?php if ($config && $is_enable_cta == 1): ?>
 
                               <div class="atakx-section-head">
-                                   <h1 style="font-size: 1.5rem;">Call to actions (CTA)</h1>
-                                   <div class="atakx-separator"></div>
+                                   <div class="atakx-flex">
+                                        <div class="atakx-icon-container">
+                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="30px" height="30px" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fc6736" class="size-6">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 1 1 0-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 0 1-1.44-4.282m3.102.069a18.03 18.03 0 0 1-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 0 1 8.835 2.535M10.34 6.66a23.847 23.847 0 0 0 8.835-2.535m0 0A23.74 23.74 0 0 0 18.795 3m.38 1.125a23.91 23.91 0 0 1 1.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 0 0 1.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 0 1 0 3.46" />
+                                             </svg>
+                                        </div>
+                                        <h1 style="font-size: 1.5rem; color: #575757;">Call to actions (CTA)</h1>
+                                   </div>
+                                   <div class="atakx-separator-container">
+                                        <div class="atakx-separator-wi"></div>
+                                        <div class="atakx-separator"></div>
+                                   </div>
                               </div>
 
                               <form class="atakx-form" action="" id="form-cta" method="post" enctype="multipart/form-data">
@@ -262,8 +306,18 @@ if ($config_cta) {
                          <?php if ($config): ?>
 
                               <div class="atakx-section-head">
-                                   <h1 style="font-size: 1.5rem;">Programación semanal</h1>
-                                   <div class="atakx-separator"></div>
+                                   <div class="atakx-flex">
+                                        <div class="atakx-icon-container">
+                                             <svg xmlns="http://www.w3.org/2000/svg" fill="#fc6736" width="30px" height="30px" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fc6736" class="size-6">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                             </svg>
+                                        </div>
+                                        <h1 style="font-size: 1.5rem; color: #575757;">Programación semanal</h1>
+                                   </div>
+                                   <div class="atakx-separator-container">
+                                        <div class="atakx-separator-wi"></div>
+                                        <div class="atakx-separator"></div>
+                                   </div>
                               </div>
 
                               <form class="atakx-form" action="" id="form-post-rate" method="post">
@@ -304,14 +358,45 @@ if ($config_cta) {
                          </div>
                     </div>
 
-                    <div class="atakx-value-us">
-                         <img class="star" src="<?php echo plugin_dir_url(__FILE__) . '../assets/img/star.jpeg'; ?>" width="60px" />
-                         <div class="atakx-value-us-content">
-                              <h1>¿Disfrutas de Atakx?</h1>
-                              <p style="font-size: 1rem; font-weight: 400;">Comentanos que te parece tu experiencia con Atakx</p>
-                              <a class="value-us-link" href="#">Valóranos</a>
+                    <div class="atakx-right-banner" style="background-color: #f9f9f9;">
+                         <div class="atack-icon-container">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="star-shadow" width="40px" height="40px" viewBox="0 0 24 24" fill="#FFFFFF" class="size-8">
+                                   <path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd" />
+                              </svg>
+                         </div>
+                         <div class="atakx-right-banner-content">
+                              <h1 style="color: #575757;">¿Disfrutas de Atakx?</h1>
+                              <p style="font-size: 1rem; font-weight: 400; color: #575757;">Comentanos que te parece tu experiencia con Atakx</p>
+                              <a class="atakx-right-banner-link" style="color: #575757;" href="#">Valóranos</a>
                          </div>
                     </div>
+
+                    <div class="atakx-right-banner" style="background-color: #fc6736; color: #FFFFFF;">
+                         <div class="atack-icon-container">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="#fc6736" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                              </svg>
+                         </div>
+                         <div class="atakx-right-banner-content" style="color: #FFFFFF;">
+                              <h1 style="color: #FFFFFF;">Documentación</h1>
+                              <p style="font-size: 1rem; font-weight: 400;">¿Necesitas ayuda? Aquí documentamos las preguntas más frecuentes</p>
+                              <a class="atakx-right-banner-link" style="color: #FFFFFF;" href="#">Leer documentación</a>
+                         </div>
+                    </div>
+
+                    <div class="atakx-right-banner" style="background-color: #191919; color: #FFFFFF;">
+                         <div class="atack-icon-container">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="#FFFFFF" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M16.712 4.33a9.027 9.027 0 0 1 1.652 1.306c.51.51.944 1.064 1.306 1.652M16.712 4.33l-3.448 4.138m3.448-4.138a9.014 9.014 0 0 0-9.424 0M19.67 7.288l-4.138 3.448m4.138-3.448a9.014 9.014 0 0 1 0 9.424m-4.138-5.976a3.736 3.736 0 0 0-.88-1.388 3.737 3.737 0 0 0-1.388-.88m2.268 2.268a3.765 3.765 0 0 1 0 2.528m-2.268-4.796a3.765 3.765 0 0 0-2.528 0m4.796 4.796c-.181.506-.475.982-.88 1.388a3.736 3.736 0 0 1-1.388.88m2.268-2.268 4.138 3.448m0 0a9.027 9.027 0 0 1-1.306 1.652c-.51.51-1.064.944-1.652 1.306m0 0-3.448-4.138m3.448 4.138a9.014 9.014 0 0 1-9.424 0m5.976-4.138a3.765 3.765 0 0 1-2.528 0m0 0a3.736 3.736 0 0 1-1.388-.88 3.737 3.737 0 0 1-.88-1.388m2.268 2.268L7.288 19.67m0 0a9.024 9.024 0 0 1-1.652-1.306 9.027 9.027 0 0 1-1.306-1.652m0 0 4.138-3.448M4.33 16.712a9.014 9.014 0 0 1 0-9.424m4.138 5.976a3.765 3.765 0 0 1 0-2.528m0 0c.181-.506.475-.982.88-1.388a3.736 3.736 0 0 1 1.388-.88m-2.268 2.268L4.33 7.288m6.406 1.18L7.288 4.33m0 0a9.024 9.024 0 0 0-1.652 1.306A9.025 9.025 0 0 0 4.33 7.288" />
+                              </svg>
+                         </div>
+                         <div class="atakx-right-banner-content" style="color: #FFFFFF;">
+                              <h1 style="color: #FFFFFF; line-height: 2rem;">¿Sigues necesitando ayuda?</h1>
+                              <p style="font-size: 1rem; font-weight: 400;">Contacta nuestro equipo de soporte</p>
+                              <a class="atakx-right-banner-link" style="color: #FFFFFF;" href="#">Abre un ticket</a>
+                         </div>
+                    </div>
+
                </div>
           </div>
 
@@ -332,34 +417,35 @@ if ($config_cta) {
                     apiKey: formData.get('apiKey')
                }
 
-               const responseValidate = await fetch('http://localhost:4000/api/v1/plugin-wp/validateApiKey', {
-                    method: 'POST',
-                    headers: {
-                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(obj)
-               })
+               // const responseValidate = await fetch('http://localhost:4000/api/v1/plugin-wp/validateApiKey', {
+               //      method: 'POST',
+               //      headers: {
+               //           'Content-Type': 'application/json'
+               //      },
+               //      body: JSON.stringify(obj)
+               // })
 
-               if (responseValidate.ok) {
-                    document.getElementById("apiInvalid").style.display = "none";
-                    const maxArticlesPerMonth = await responseValidate.json();
-                    console.log(maxArticlesPerMonth.response.num_articles_for_month);
-                    formData.set("maxArticlesPerMonth", maxArticlesPerMonth.response.num_articles_for_month);
-                    fetch('../save-config.php', {
-                              method: 'POST',
-                              body: formData
-                         })
-                         .then(response => response)
-                         .then(data => {
-                              console.log(data);
-                              //location.reload();
-                         })
-                         .catch(error => {
-                              console.error('Error al enviar los datos:', error);
-                         });
-               } else {
-                    document.getElementById("apiInvalid").style.display = "block";
-               }
+               //if (responseValidate.ok) {
+               document.getElementById("apiInvalid").style.display = "none";
+               //const maxArticlesPerMonth = await responseValidate.json();
+               const maxArticlesPerMonth = 8;
+               console.log(maxArticlesPerMonth);
+               formData.set("maxArticlesPerMonth", maxArticlesPerMonth);
+               fetch('../save-config.php', {
+                         method: 'POST',
+                         body: formData
+                    })
+                    .then(response => response)
+                    .then(data => {
+                         console.log(data);
+                         location.reload();
+                    })
+                    .catch(error => {
+                         console.error('Error al enviar los datos:', error);
+                    });
+               //} else {
+               //     document.getElementById("apiInvalid").style.display = "block";
+               //}
           });
 
           if (formConfigPostRate) {
@@ -377,6 +463,7 @@ if ($config_cta) {
                          .then(response => response)
                          .then(data => {
                               console.log(data);
+                              location.reload();
                          })
                          .catch(error => {
                               console.error('Error al enviar los datos:', error);
@@ -402,6 +489,7 @@ if ($config_cta) {
                          .then(response => response)
                          .then(data => {
                               console.log(data);
+                              location.reload();
                          })
                          .catch(error => {
                               console.error('Error al enviar los datos:', error);
