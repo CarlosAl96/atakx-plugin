@@ -524,10 +524,16 @@
 }
 
 .atakx-congrats-container {
-  width: calc(100% - 2rem);
+  position: relative;
+  width: calc(100% - 3rem);
   background-color: #ebfaf5;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.5rem;
+  overflow: hidden;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .atakx-firts-steps-container {
@@ -536,4 +542,59 @@
   border: solid 0.5px #e0e4e9;
   border-radius: 8px;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.qchar {
+  font-size: 8px;
+}
+
+.qcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.qcircle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: solid 0.5px gray;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.atakx-congrats-img {
+  position: absolute;
+  bottom: -170px;
+  right: 20px;
+  z-index: 1;
+}
+
+.atakx-congrats-container p {
+  position: relative;
+  z-index: 10;
+}
+
+.qtext {
+  font-size: larger;
+}
+
+.congrats-text {
+  font-size: 1.2rem;
+  color: #49d0a5;
+  line-height: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.congrats-close {
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
 }

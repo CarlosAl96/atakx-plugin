@@ -10,6 +10,7 @@
 include_once(plugin_dir_path(__FILE__) . 'save-config.php');
 include_once(plugin_dir_path(__FILE__) . 'save-config-post-rate.php');
 include_once(plugin_dir_path(__FILE__) . 'save-config-cta.php');
+// include_once(plugin_dir_path(__FILE__) . 'send-email.php');
 include_once(plugin_dir_path(__FILE__) . 'generate-articles.php');
 include_once(plugin_dir_path(__FILE__) . 'init-cron-generate-articles.php');
 
@@ -101,3 +102,80 @@ add_action('atakx_initial_cron', 'atakx_init_cron_generate_article');
 
 wp_register_style('atakx', plugin_dir_url(__FILE__) . 'assets/css/atakx.css', array());
 wp_enqueue_style('atakx');
+
+function custom_cta_shortcode($atts)
+{
+     // Atributos predeterminados del shortcode
+     $atts = shortcode_atts([
+          'background_image' => '',
+          'logo' => '',
+          'overlay_color' => '',
+          'overlay_opacity' => '',
+          'title' => '',
+          'button_title' => '',
+          'button_color' => '',
+          'lead_email' => '',
+          'overlayBorderRadius' => '',
+          'containerBorderRadius' => '',
+     ], $atts);
+
+     $output = '
+     <div style="display: flex; flex-direction: row; width: 100%; justify-content: center;">
+          <div id="cta-container" style="display: flex !important; gap: 0.3rem; flex-direction: row !important; justify-content: center !important; align-items: center !important; margin: 2rem !important; width: 100% !important; max-width: 900px; height: 380px !important; background-color: #f2f3f5 !important; border-radius: 10px;">
+               <div style="position: relative !important; width: 50% !important; height: 100% !important; display: flex !important; justify-content: center !important; align-items: center !important;">
+                    <img id="prevLogoCTA" src="' . esc_attr($atts['logo']) . '" style="z-index: 9 !important; width: 150px !important;">
+                    <img id="prevBackgroundImageCTA" src="' . esc_attr($atts['background_image']) . '" style="position: absolute !important; top: 0 !important; left: 0 !important; object-fit: cover !important; width: 100% !important; height: 100% !important; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                    <div id="overlay" style="position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background-color: ' . esc_attr($atts['overlay_color']) . ' !important; opacity: ' . esc_attr($atts['overlay_opacity']) . ' !important; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"></div>
+               </div>
+               <div style="width: 50% !important; padding-right: 1rem; height: 100% !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 1rem !important;">
+                    <span id="prevTitleCTA" style="margin-left: 10px !important; margin-right: 10px !important; line-height: 2.5rem !important; font-size: 2.5rem !important; font-weight: 700 !important;">' . esc_attr($atts['title']) . '</span>
+                    <div style="display: flex !important; justify-content: space-between !important; width: 95% !important; margin-right: 10px !important; margin-left: 10px !important; gap: 0.5rem !important;">
+                         <div style="display: flex !important; flex-direction: column !important; width: calc(50% - 1rem) !important;">
+                              <label style="font-size: 16px !important; font-weight: 500 !important; margin-bottom: 5px !important; color: #333 !important;">Nombre:</label>
+                              <input class="cta-input" placeholder="Nombre" type="text" id="name" name="name" value="" style="background-color: #e8e9eb !important; padding: 10px !important; border: none !important; font-size: 14px !important; color: #333 !important; width: cacl(100%-0.5rem) !important;">
+                         </div>
+                         <div style="display: flex !important; flex-direction: column !important; width: calc(50% - 1rem) !important;">
+                              <label style="font-size: 16px !important; font-weight: 500 !important; margin-bottom: 5px !important; color: #333 !important;">Correo electrónico:</label>
+                              <input class="cta-input" placeholder="Correo electrónico" type="email" id="email" name="email" value="" style="background-color: #e8e9eb !important; padding: 10px !important; border: none !important; font-size: 14px !important; color: #333 !important; width: cacl(100%-0.5rem) !important;">
+                         </div>
+                    </div>
+                    <button class="cta-button" id="prevButtonCTA" style="padding: 0.7rem 1.2rem !important; cursor: pointer !important; border: none !important; border-radius: 5px !important; color: white !important; font-size: 1.2rem !important; font-weight: 600 !important; background-color: ' . esc_attr($atts['button_color']) . ' !important;">' . esc_attr($atts['button_title']) . '</button>
+               </div>
+          </div>
+
+          <script>
+               document.getElementById("prevButtonCTA").addEventListener("click", function() {
+                    const name = document.getElementById("name").value;
+                    const email = document.getElementById("email").value;
+
+                    if (!name || !email) {
+                         return;
+                    }
+
+                    fetch("' . admin_url('admin-post.php') . '", {
+                         method: "POST",
+                         headers: {
+                              "Content-Type": "application/json",
+                         },
+                         body: JSON.stringify({
+                              action: "send_email",
+                              name: name,
+                              email: email,
+                         }),
+                    })
+                    .then(response => response)
+                    .then(data => {
+                         console.log(data);
+                    })
+                    .catch(error => {
+                         console.log(error);
+                    });
+               });
+          </script>
+
+     </div>
+     ';
+
+     return $output;
+}
+add_shortcode('custom_cta', 'custom_cta_shortcode');

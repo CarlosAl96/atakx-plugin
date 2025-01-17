@@ -67,9 +67,20 @@ if ($config_cta) {
 
 <body>
 
+     <div id="modalInvalidWords" style="display: none;" class="atakx-preview">
+          <div class="modal-content" style="height: 200px !important;">
+               <span class="close" id="close-invalid-word">&times;</span>
+               <div style="padding: 1rem;">
+                    <h1 style="font-size: 1.2rem; color:rgb(223, 45, 45);">¡Advertencia!</h1>
+                    <p style="font-size: large;">Estás intentando crear contenido de temas sensibles y prohibidos por nuestras políticas.</p>
+                    <p style="font-size: large;" id="trysNum"></p>
+               </div>
+          </div>
+     </div>
+
      <div id="preview" class="atakx-preview">
           <div class="modal-content">
-               <span class="close">&times;</span>
+               <span class="close" id="close-preview">&times;</span>
                <div id="cta-container" style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 2rem; width: 900px; height: 380px; background-color: #f2f3f5;">
                     <style>
                          .cta-button:hover {
@@ -119,7 +130,16 @@ if ($config_cta) {
                <p>Atakx / Creación de contenido, impulsado por AI</p>
           </div>
 
-          <div class="atakx-sub-container">
+          <div id="banned" class="atakx-center" style="padding: 1rem; display: none;">
+               <div class="atakx-congrats-container" style="background-color:rgba(228, 148, 148, 0.55);">
+                    <div class="atakx-flex" style="justify-content: space-between;">
+                         <span style="font-size: 1rem; font-weight: 700; color:rgb(223, 45, 45);">¡Tu cuenta ha sido baneada!</span>
+                    </div>
+                    <p>Se ha decidido banear esta cuenta de manera indefinida debido a un uso indebido.</p>
+               </div>
+          </div>
+
+          <div class="atakx-sub-container" id="all">
                <div class="column-left">
                     <div class="atakx-banner">
                          <div class="atakx-banner-content">
@@ -131,28 +151,42 @@ if ($config_cta) {
 
                     <div class="atakx-forms-config">
 
-                         <div class="atakx-center" style="padding: 1rem;">
+                         <div class="atakx-center" style="padding: 1rem; display: none;" id="congrats">
                               <div class="atakx-congrats-container">
                                    <div class="atakx-flex" style="justify-content: space-between;">
-                                        <span>¡Felicidades!</span>
-                                        <span>&times;</span>
+                                        <span style="font-size: 1rem; font-weight: 700;">¡Felicidades!</span>
+                                        <span class="congrats-close" id="close-congrats">&times;</span>
                                    </div>
-                                   <p>Atakx ya está activado y está trabajando para tu sitio. Tu web empezará a posicionar mejor gracias a la estrategia de contenidos.</p>
+                                   <h1 class="congrats-text">Atakx ya está activado y está trabajando para tu sitio. Tu web empezará a posicionar mejor gracias a la estrategia de contenidos.</h1>
                                    <p>Para garantizar resultados en el posicionamiento de tu página web, te recomendamos hacer seguimiento a palabras claves con poca dificultad y buen volumen de busquedas mensuales.</p>
+                                   <img class="atakx-congrats-img" src="<?php echo plugin_dir_url(__FILE__) . '../assets/img/icon-congrats.png'; ?>" width="300px" />
+
                               </div>
                          </div>
 
                          <div class="atakx-section-head">
-                              <h1 style="font-size: 1.5rem; color: #fc6736;">Primeros pasos</h1>
+                              <h1 style="font-size: 1.2rem; color: #fc6736;">Primeros pasos</h1>
                               <div class="atakx-separator"></div>
                          </div>
 
                          <div class="atakx-center" style="padding: 1rem;">
                               <div class="atakx-firts-steps-container">
-                                   <p>¿Cómo obtener tu API Key?</p>
-                                   <p>¿Cómo seleccionar tus palabras claves?</p>
-                                   <p>¿Qué es el CTA de Atakx?</p>
-                                   <p>¿Con que frecuencia recomendamos publicar entradas?</p>
+                                   <div class="qcontainer">
+                                        <div class="qcircle"><span class="qchar">?</span></div>
+                                        <span class="qtext">¿Cómo obtener tu API Key?</span>
+                                   </div>
+                                   <div class="qcontainer">
+                                        <div class="qcircle"><span class="qchar">?</span></div>
+                                        <span class="qtext">¿Cómo seleccionar tus palabras claves?</span>
+                                   </div>
+                                   <div class="qcontainer">
+                                        <div class="qcircle"><span class="qchar">?</span></div>
+                                        <span class="qtext">¿Qué es el CTA de Atakx?</span>
+                                   </div>
+                                   <div class="qcontainer">
+                                        <div class="qcircle"><span class="qchar">?</span></div>
+                                        <span class="qtext">¿Con que frecuencia recomendamos publicar entradas?</span>
+                                   </div>
                               </div>
                          </div>
 
@@ -406,47 +440,116 @@ if ($config_cta) {
           const formConfig = document.getElementById('form-config');
           const formConfigPostRate = document.getElementById('form-post-rate');
           const formConfigCta = document.getElementById('form-cta');
+          const all = document.getElementById('all');
+          const banned = document.getElementById('banned');
+          const url = "<?php echo esc_url(get_site_url()); ?>";
+
+          const _obj = {
+               pageUrl: url,
+          }
+
+          document.addEventListener('DOMContentLoaded', async () => {
+               const urlValidate = await fetch('http://localhost:4000/api/v1/plugin-wp/validateUrlBlocked', {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(_obj)
+               })
+
+               const dataUrl = await urlValidate.json();
+               if (dataUrl.response.blocked) {
+                    all.style.display = 'none';
+                    banned.style.display = 'flex';
+               }
+
+          });
+
+
 
           formConfig.addEventListener('submit', async function(event) {
                event.preventDefault();
 
                const formData = new FormData(this);
-               const url = location.href.split("/")[0] + "//" + location.href.split("/")[2];
+
                const obj = {
-                    page_url: url,
+                    pageUrl: url,
                     apiKey: formData.get('apiKey')
                }
 
-               // const responseValidate = await fetch('http://localhost:4000/api/v1/plugin-wp/validateApiKey', {
-               //      method: 'POST',
-               //      headers: {
-               //           'Content-Type': 'application/json'
-               //      },
-               //      body: JSON.stringify(obj)
-               // })
+               const objWords = {
+                    pageUrl: url,
+                    name: formData.get('nameBusiness'),
+                    descriptionBusiness: formData.get('descriptionBusiness'),
+                    keyWords: formData.get('keyWords'),
+               }
 
-               //if (responseValidate.ok) {
-               document.getElementById("apiInvalid").style.display = "none";
-               //const maxArticlesPerMonth = await responseValidate.json();
-               const maxArticlesPerMonth = 8;
-               console.log(maxArticlesPerMonth);
-               formData.set("maxArticlesPerMonth", maxArticlesPerMonth);
-               fetch('../save-config.php', {
-                         method: 'POST',
-                         body: formData
-                    })
-                    .then(response => response)
-                    .then(data => {
-                         console.log(data);
-                         location.reload();
-                    })
-                    .catch(error => {
-                         console.error('Error al enviar los datos:', error);
-                    });
-               //} else {
-               //     document.getElementById("apiInvalid").style.display = "block";
-               //}
+               const responseValidateWords = await fetch('http://localhost:4000/api/v1/plugin-wp/validateWords', {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(objWords)
+               })
+               console.log(responseValidateWords);
+
+               const responseValidateUrl = await fetch('http://localhost:4000/api/v1/plugin-wp/validateUrlBlocked', {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(obj)
+               })
+
+               const responseValidate = await fetch('http://localhost:4000/api/v1/plugin-wp/validateApiKey', {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(obj)
+               })
+
+               const dataUrlBlocked = await responseValidateUrl.json();
+
+               console.log(dataUrlBlocked);
+
+               if (dataUrlBlocked.response.blocked) {
+                    all.style.display = 'none';
+                    banned.style.display = 'flex';
+
+               } else if (responseValidate.ok && responseValidateWords.ok) {
+                    console.log("valido");
+                    document.getElementById("apiInvalid").style.display = "none";
+                    const maxArticlesPerMonth = await responseValidate.json();
+                    console.log(maxArticlesPerMonth);
+                    formData.set("maxArticlesPerMonth", maxArticlesPerMonth);
+                    document.getElementById('congrats').style.display = "block";
+                    fetch('../save-config.php', {
+                              method: 'POST',
+                              body: formData
+                         })
+                         .then(response => response)
+                         .then(data => {
+                              console.log(data);
+                         })
+                         .catch(error => {
+                              console.error('Error al enviar los datos:', error);
+                         });
+               } else if (!responseValidateWords.ok) {
+                    console.log("entro aqui");
+                    document.getElementById("modalInvalidWords").style.display = 'flex';
+                    document.getElementById("trysNum").innerHTML = `Llevas ${dataUrlBlocked.response.num_intent} strikes, al tercero tu sitio será baneado indefinidamente.`;
+                    const closeInvalidWord = document.getElementById('close-invalid-word');
+                    closeInvalidWord.onclick = function() {
+                         document.getElementById("modalInvalidWords").style.display = 'none';
+                    }
+               } else {
+                    console.log("invalido");
+                    document.getElementById("apiInvalid").style.display = "block";
+               }
           });
+
+
 
           if (formConfigPostRate) {
                formConfigPostRate.addEventListener('submit', function(event) {
@@ -536,12 +639,17 @@ if ($config_cta) {
 
           var modal = document.getElementById("preview");
           var openModalBtn = document.getElementById("openModalBtn");
-          var closeModal = document.getElementsByClassName("close")[0];
 
           if (openModalBtn) {
                openModalBtn.onclick = function() {
 
                     modal.style.display = 'block';
+
+                    var closeModal = document.getElementById("close-preview");
+
+                    closeModal.onclick = function() {
+                         modal.style.display = "none";
+                    }
 
                     const backgroundImageCTA = document.getElementById('backgroundImageCTA');
                     const overlayColor = document.getElementById('overlayColor').value.trim();
@@ -613,14 +721,16 @@ if ($config_cta) {
                }
           }
 
-          closeModal.onclick = function() {
-               modal.style.display = "none";
-          }
-
           window.onclick = function(event) {
                if (event.target == modal) {
                     modal.style.display = "none";
                }
+          }
+
+          let closeCongrats = document.getElementById('close-congrats');
+
+          closeCongrats.onclick = () => {
+               document.getElementById('congrats').style.display = "none";
           }
      </script>
 </body>
