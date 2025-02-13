@@ -2,7 +2,8 @@
 
 include_once(plugin_dir_path(__FILE__) . 'upload-images.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titleCTA'])) {
+
+function atakx_save_config_cta() {
 
      $overlayColor = $_POST['overlayColor'];
      $overlayOpacity = $_POST['overlayOpacity'];

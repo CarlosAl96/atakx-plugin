@@ -1,7 +1,6 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apiKey'])) {
-
+function atakx_save_config() {
      $apiKey = $_POST['apiKey'];
      $nameBusiness = $_POST['nameBusiness'];
      $descriptionBusiness = $_POST['descriptionBusiness'];

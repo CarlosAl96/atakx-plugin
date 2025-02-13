@@ -523,8 +523,9 @@ if ($config_cta) {
                     const maxArticlesPerMonth = await responseValidate.json();
                     console.log(maxArticlesPerMonth);
                     formData.set("maxArticlesPerMonth", maxArticlesPerMonth);
+                    formData.set("action", "atakx_save_config");
                     document.getElementById('congrats').style.display = "block";
-                    fetch('../save-config.php', {
+                    fetch("<?php echo admin_url('admin-post.php'); ?>", {
                               method: 'POST',
                               body: formData
                          })
@@ -556,10 +557,10 @@ if ($config_cta) {
                     event.preventDefault();
 
                     const formData = new FormData(this);
-
+                    formData.set("action", "atakx_save_config_post_rate");
                     console.log(formData.get('articlesPerWeek'));
 
-                    fetch('../save-config-post-rate.php', {
+                    fetch("<?php echo admin_url('admin-post.php'); ?>", {
                               method: 'POST',
                               body: formData
                          })
@@ -584,8 +585,9 @@ if ($config_cta) {
                     const formData = new FormData(this);
                     formData.set("oldBg", oldBg);
                     formData.set("oldLogo", oldLogo);
+                    formData.set("action", "atakx_save_config_cta");
 
-                    fetch('../save-config-cta.php', {
+                    fetch("<?php echo admin_url('admin-post.php'); ?>", {
                               method: 'POST',
                               body: formData
                          })

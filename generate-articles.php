@@ -38,121 +38,126 @@ function atakx_generate_articles()
 
           $url = 'http://localhost:4000/api/v1/plugin-wp/article';
 
-          for ($i = 0; $i < $articlesNumber; $i++) {
-               $request_args = [
-                    'timeout'     => '1000',
-                    'redirection' => '5',
-                    'httpversion' => '1.0',
-                    'blocking'    => true,
-                    'body' => json_encode([
-                         'apiKey' => $apiKey,
-                         'name' => $nameBusiness,
-                         'descriptionBusiness' => $descriptionBusiness,
-                         'keyWords' => $keyWords,
-                         'isImageGeneral' => $isImageGeneral,
-                         'withCta' => $withCta,
-                         'isWithContentTable' => $isWithContentTable,
-                         'categories' => $array_categorias,
-                         'htmlCta' => $htmlCta,
-                         'pageUrl' => $site_url
-                    ]),
-                    'headers' => [
-                         'Content-Type' => 'application/json',
-                    ],
-               ];
+          $request_args = [
+               'timeout'     => '1000',
+               'redirection' => '5',
+               'httpversion' => '1.0',
+               'blocking'    => true,
+               'body' => json_encode([
+                    'apiKey' => $apiKey,
+                    'name' => $nameBusiness,
+                    'descriptionBusiness' => $descriptionBusiness,
+                    'keyWords' => $keyWords,
+                    'isImageGeneral' => $isImageGeneral,
+                    'withCta' => $withCta,
+                    'isWithContentTable' => $isWithContentTable,
+                    'categories' => $array_categorias,
+                    'htmlCta' => $htmlCta,
+                    'pageUrl' => $site_url
+               ]),
+               'headers' => [
+                    'Content-Type' => 'application/json',
+               ],
+          ];
 
-               $response = wp_remote_post($url, $request_args);
+          set_time_limit(500);
 
-               $http_code = wp_remote_retrieve_response_code($response);
+          //for ($i = 0; $i < $articlesNumber; $i++) {
 
-               if ($http_code == 200) {
-                    $body = wp_remote_retrieve_body($response);
-                    error_log('Error al establecer la imagen destacada: ' . $body);
-                    $bodyJSON = json_decode($body);
+          $response = wp_remote_post($url, $request_args);
 
-                    $new_post = array(
-                         'post_title' => $bodyJSON->response->title,
-                         'post_content' => $bodyJSON->response->content,
-                         'post_type' => 'post',
-                         'post_status' => 'publish'
-                    );
+          $http_code = wp_remote_retrieve_response_code($response);
 
-                    $post_id = wp_insert_post($new_post);
+          if ($http_code == 200) {
+               $body = wp_remote_retrieve_body($response);
+               $bodyJSON = json_decode($body);
+               error_log('Error al establecer la imagen destacada: ' . $bodyJSON->response->imageGeneral);
 
-                    $result = set_featured_image_for_post($post_id, $bodyJSON->response->imageGeneral);
 
-                    if (is_wp_error($result)) {
-                         //error_log('Error al establecer la imagen destacada: ' . $result->get_error_message());
-                    }
+               $new_post = array(
+                    'post_title' => $bodyJSON->response->title,
+                    'post_content' => $bodyJSON->response->content,
+                    'post_type' => 'post',
+                    'post_status' => 'publish'
+               );
 
-                    $intents = 0;
-               } else {
-                    $i--;
-                    $intents++;
+               $post_id = wp_insert_post($new_post);
+
+               $result = set_featured_image_for_post($post_id, $bodyJSON->response->imageGeneral);
+
+               if (is_wp_error($result)) {
+                    error_log('Error al establecer la imagen destacada: ' . $result->get_error_message());
                }
 
-               if ($intents == 5) {
-                    break;
-               }
+               //   $intents = 0;
           }
+
+          // else {
+          //      $i--;
+          //      $intents++;
+          // }
+
+          // if ($intents == 5) {
+          //      //break;
+          // }
+          // //}
      } else {
           exit;
      }
 }
 function set_featured_image_for_post($post_id, $image_url)
 {
-     // Asegúrate de incluir las funciones necesarias
-     if (!function_exists('download_url')) {
-          require_once(ABSPATH . 'wp-admin/includes/file.php');
+     // Verificar que el post ID sea válido
+     if (!get_post($post_id)) {
+          return new WP_Error('invalid_post', 'El ID del post no es válido.');
      }
 
-     // Descarga la imagen desde la URL
-     $temp_file = download_url($image_url);
-
-     if (is_wp_error($temp_file)) {
-          return $temp_file;
+     // Descargar la imagen desde la URL
+     $response = wp_remote_get($image_url);
+     if (is_wp_error($response)) {
+          return $response; // Retorna el error si falla la descarga
      }
 
-     // Configura los datos del archivo para subirlo
-     $file = array(
-          'name'     => basename($image_url),
-          'type'     => mime_content_type($temp_file),
-          'tmp_name' => $temp_file,
-          'error'    => 0,
-          'size'     => filesize($temp_file),
-     );
-
-     // Subir la imagen a la biblioteca de medios
-     $upload = wp_handle_sideload($file, array('test_form' => false));
-
-     // Verificar si la subida fue exitosa
-     if (isset($upload['error'])) {
-          @unlink($temp_file); // Borra el archivo temporal si falla
-          return new WP_Error('upload_error', $upload['error']);
+     // Obtener el contenido de la imagen
+     $image_data = wp_remote_retrieve_body($response);
+     if (empty($image_data)) {
+          return new WP_Error('empty_image', 'No se pudo descargar la imagen.');
      }
 
-     // Crear el attachment para la imagen subida
+     // Generar un nombre único para la imagen
+     $filename = basename(parse_url($image_url . '.png', PHP_URL_PATH));
+
+     // Especificar la ruta temporal para guardar la imagen
+     $upload_dir = wp_upload_dir();
+     $file_path = $upload_dir['path'] . '/' . $filename;
+
+     // Guardar la imagen en el servidor
+     if (!file_put_contents($file_path, $image_data)) {
+          return new WP_Error('write_error', 'No se pudo guardar la imagen en el servidor.');
+     }
+
+     // Crear un attachment para la imagen
+     $file_type = wp_check_filetype($filename, null);
      $attachment = array(
-          'post_mime_type' => $upload['type'],
-          'post_title'     => sanitize_file_name($upload['file']),
+          'post_mime_type' => $file_type['type'],
+          'post_title'     => sanitize_file_name($filename),
           'post_content'   => '',
           'post_status'    => 'inherit',
      );
 
-     // Insertar el attachment en la base de datos
-     $attachment_id = wp_insert_attachment($attachment, $upload['file'], $post_id);
-
-     if (is_wp_error($attachment_id)) {
-          return $attachment_id;
+     // Insertar la imagen en la biblioteca de medios
+     $attach_id = wp_insert_attachment($attachment, $file_path, $post_id);
+     if (is_wp_error($attach_id)) {
+          return $attach_id;
      }
 
      // Generar los metadatos de la imagen
      require_once(ABSPATH . 'wp-admin/includes/image.php');
-     $attach_data = wp_generate_attachment_metadata($attachment_id, $upload['file']);
-     wp_update_attachment_metadata($attachment_id, $attach_data);
+     $attach_data = wp_generate_attachment_metadata($attach_id, $file_path);
+     wp_update_attachment_metadata($attach_id, $attach_data);
 
-     // Establecer la imagen como destacada para el post
-     set_post_thumbnail($post_id, $attachment_id);
+     // Asignar la imagen como destacada al post
+     set_post_thumbnail($post_id, $attach_id);
 
      return true;
 }

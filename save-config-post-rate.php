@@ -1,7 +1,6 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['articlesPerWeek'])) {
-
+function atakx_save_config_post_rate() {
      $articlesPerWeek = $_POST['articlesPerWeek'];
 
      global $wpdb;
